@@ -351,7 +351,7 @@ def init_past_rewards(conn, cursor):
 
 
 if __name__ == "__main__":
-    conn = sqlite3.connect('rewards.db')
+    conn = sqlite3.connect('../data/rewards.db')
     cursor = conn.cursor()
     connection = MongoClient('localhost', 27017)
     collection = connection['GroupB']['farmers']
