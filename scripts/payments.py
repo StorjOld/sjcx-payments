@@ -320,7 +320,7 @@ def make_points_csv(cursor, date):
                       usd_reward, duration / (86400),
                       uptime / duration * 100, height FROM rewards
                       WHERE duration > 0 AND payment_date=?''', (str(date),))
-    csv_file = 'sjcx_rewards_{}_{}_{}.csv'.format(date.year, date.month, date.day)
+    csv_file = '../sjcx_rewards_{}_{}_{}.csv'.format(date.year, date.month, date.day)
     with open(csv_file, 'w') as fp:
         csv_writer = csv.writer(fp)
         csv_writer.writerow(['auth_address', 'payout_address', 'sjcx_reward',
