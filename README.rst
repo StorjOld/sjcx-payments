@@ -1,7 +1,7 @@
 ========================
 SJCX Payments Calculator
 ========================
-sjcx-payments is used for calculating the sjcx rewards for the farmers on the Storj network. sjcx-payments uses farmer data stored in a MongoDB (data is collected by GroupB-Scraper). 
+sjcx-payments is used for calculating the sjcx rewards for the farmers on the Storj network. sjcx-payments uses farmer data stored in a MongoDB (data is collected by scrapers). Scrapers are in the driveshare-graph repository. 
 
 
 Setup
