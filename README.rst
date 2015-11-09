@@ -25,4 +25,6 @@ Install required packages
 Command Line Usage
 ================== 
 ::
-	$ payments.py 
+	$ ./payments.py 
+
+
