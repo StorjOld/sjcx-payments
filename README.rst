@@ -26,7 +26,8 @@ Install required packages
 Command Line Usage
 ================== 
 
-Run this script on the same machine that is running the scrapers (in the driveshare-graph repo). This is essential because payments.py uses the data from the MongoDB to calculate farmer statistics (duration, uptime, height). 
+Run this script on a machine that stores the MongoDB data from the driveshare-graph scrapers. This is essential because payments.py uses the data from the MongoDB to calculate farmer statistics (duration, uptime, height). 
+
 Example usage
 ::
 	$ python3 payments.py 
@@ -34,6 +35,8 @@ Example usage
 	  Enter the last date for the payment duration period in YYYY-MM-DD format. 2015-11-15
 	  Calculating rewards...
 	  Open sjcx_rewards.csv to see rewards
+
+Running this script would add the farmer stats/rewards for the period (11/1/2015 - 11/15/2015) into rewards.db (located in data directory). 
 
 
 Payment Formula
