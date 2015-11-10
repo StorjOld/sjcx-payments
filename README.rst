@@ -23,8 +23,7 @@ Install required packages
 
 Command Line Usage
 ================== 
-General
--------
+
 ::
 	$ python3 payments.py 
 	  Enter the first date for the payment duration period in YYYY-MM-DD format. 2015-11-01
@@ -35,6 +34,7 @@ General
 Payment Formula
 ===============
 Current formula that is used to calculate sjcx rewards. 
+
 * For each farmer/build (authentication address) who has a sjcx balance equal to or above 10,000 in their payout_address, calculate his/her points.
 	* points = f(u) * g(h) * (duration/payment_period) 
 		* u = uptime percentage (between 0 and 1)
