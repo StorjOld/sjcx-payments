@@ -1,0 +1,6 @@
+After the formula is finalized, automate the payments, so that it runs on the second and fourth Friday of every month. Send the rewards csv to Shawn and James.  
+
+Error checking 
+	-User inputs valid dates
+	-MongoDB collection contains the data for the payment period
+
