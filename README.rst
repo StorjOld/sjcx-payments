@@ -50,6 +50,7 @@ Current formula that is used to calculate sjcx rewards.
 		* h = height / max_height (max height is 199,999 for Test Group B)
 		* f(x) is a logistic regression function 
 		* g(x) = 0.01 + 0.99 * x
+	* If the build has a payout address with a balance below 10,000 sjcx and the payout address is on the whitelist, multiply their points value by balance / 10,000. Builds with balances below 10,000 sjcx and not on the whitelist get zero points. 
 * Find the sum of the calculated points for all of the farmers. 
 * Divide each farmer's points by the sum in order to get the percentage of rewards that the farmer should receive. Multiply that percentage by the total rewards pool. 
 
