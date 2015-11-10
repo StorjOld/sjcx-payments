@@ -23,6 +23,8 @@ Install required packages
 
 Command Line Usage
 ================== 
+General
+-------
 ::
 	$ python3 payments.py 
 	  Enter the first date for the payment duration period in YYYY-MM-DD format. 2015-11-01
