@@ -2,7 +2,7 @@
 SJCX Payments Calculator
 ========================
 
-sjcx-payments is used for calculating the sjcx rewards for the farmers on the Storj network. sjcx-payments uses farmer data stored in a MongoDB (data is collected by scrapers). Scrapers are in the driveshare-graph repository. 
+sjcx-payments is used for calculating the sjcx rewards for the farmers on the Storj network. sjcx-payments uses farmer data stored in a MongoDB (data is collected by scrapers). Scrapers are in the driveshare-graph repository.  
 
 
 Setup
@@ -12,20 +12,21 @@ OSX
 ---
 Install required packages
 ::
-	$ brew install python3
+	$ brew install python3 sqlite3
 	$ pip3 install -r requirements.txt
 
 Ubuntu
 ------
 Install required packages
 ::
-	$ apt-get install python3 python3-pip
+	$ sudo apt-get install python3 python3-pip sqlite3 libsqlite3-dev
 	$ pip3 install -r requirements.txt 
 
 
 Command Line Usage
 ================== 
 
+Run this script on the same machine that is running the scrapers (in the driveshare-graph repo). This is essential because payments.py uses the data from the MongoDB to calculate farmer statistics (duration, uptime, height). 
 Example usage
 ::
 	$ python3 payments.py 
@@ -33,6 +34,7 @@ Example usage
 	  Enter the last date for the payment duration period in YYYY-MM-DD format. 2015-11-15
 	  Calculating rewards...
 	  Open sjcx_rewards.csv to see rewards
+
 
 Payment Formula
 ===============
@@ -50,6 +52,12 @@ Current formula that is used to calculate sjcx rewards.
 
 Changing the formula
 --------------------
-All components of the farmula are in payments.py. If the total rewards pool, payment period, or max height changes,change the value of the global variables, SJCX_TOTAL_REWARDS and INDIVIDUAL_MAX_HEIGHT. Current code assumes a 2 week payment period. 
+All components of the formula are in payments.py. If the total rewards pool, payment period, or max height changes,change the value of the global variables, SJCX_TOTAL_REWARDS and INDIVIDUAL_MAX_HEIGHT. Current code assumes a 2 week payment period. 
+
+
+Data
+==== 
+
+The data folder includes "Storj Test Group B Rewards complicance.xlsx" and rewards.db. The excel file contains the first three payout information. rewards.db is a sqlite database. rewards.db contains the payment history and farmer stats for the October 2015 (10/1/2015-10/31/2015) payment batch. Executing payments.py adds the payment stats for that period into rewards.db. 
 
 
