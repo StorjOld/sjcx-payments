@@ -227,7 +227,7 @@ def assign_points(conn, cursor, date):
                 payment_ratio = float(balance/10000)
             points = payment_ratio * height_function(height) * \
                      uptime_logistic_function(uptime/duration) * \
-                     (duration / SECONDS_IN_MONTH)
+                     (duration / SECONDS_IN_TWO_WEEKS)
             cursor.execute('UPDATE rewards SET points=? WHERE auth_address=? AND '
                            'payment_date=?',
                           (points, str(auth_addr), str(date),))
@@ -357,15 +357,15 @@ if __name__ == "__main__":
     collection = connection['GroupB']['farmers']
 
     first_date = input('Enter the first date for the payment duration period'
-                       'in YYYY-MM-DD format.')
+                        'in YYYY-MM-DD format.')
     last_date = input('Enter the last date for the payment duration period'
-                      'in YYYY-MM-DD format.')
+                      ' in YYYY-MM-DD format.')
     first_year, first_month, first_day = map(int, first_date.split('-'))
     last_year, last_month, last_day = map(int, last_date.split('-'))
     first_date = dt.datetime(first_year, first_month, first_day, 0, 0, 0)
     last_date = dt.datetime(last_year, last_month, last_day, 0, 0, 0)
 
-    print('Calculating rewards...')
+    print('\nCalculating rewards...')
     add_reward_stats(conn, cursor, collection, first_date, last_date)
     assign_points(conn, cursor, last_date)
     distribute_sjcx(conn, cursor, last_date)
@@ -373,4 +373,4 @@ if __name__ == "__main__":
 
     make_points_csv(cursor)
     conn.close()
-    print('Open sjcx_rewards.csv to see rewards')
+    print('\nOpen sjcx_rewards.csv to see rewards')
