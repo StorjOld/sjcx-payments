@@ -1,11 +1,13 @@
 ========================
 SJCX Payments Calculator
 ========================
+
 sjcx-payments is used for calculating the sjcx rewards for the farmers on the Storj network. sjcx-payments uses farmer data stored in a MongoDB (data is collected by scrapers). Scrapers are in the driveshare-graph repository. 
 
 
 Setup
 =====
+
 OSX
 ---
 Install required packages
@@ -24,6 +26,7 @@ Install required packages
 Command Line Usage
 ================== 
 
+Example usage
 ::
 	$ python3 payments.py 
 	  Enter the first date for the payment duration period in YYYY-MM-DD format. 2015-11-01
@@ -33,6 +36,7 @@ Command Line Usage
 
 Payment Formula
 ===============
+
 Current formula that is used to calculate sjcx rewards. 
 
 * For each farmer/build (authentication address) who has a sjcx balance equal to or above 10,000 in their payout_address, calculate his/her points.
