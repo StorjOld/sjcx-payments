@@ -8,7 +8,7 @@ install:
   - pip install -r test_requirements.txt
 
 script:
-  - unittest tests 
+  - coverage run --source="sjcx-payments" test
 
 after_success:
   - coveralls
