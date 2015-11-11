@@ -14,16 +14,16 @@ BTC_USD_URL = ("https://api.bitcoinaverage.com/history/USD/"
 def btc_sjcx_rate(datetime):
     """
     Returns the btc to sjcx weighted average for the 24 hour
-    period after the datetime.
+    period before the datetime.
 
     Args:
-        datetime:
+        datetime: date
 
     Returns:
         btc_sjcx_rate: value of 1 sjcx in bitcoins
     """
-    start_timestamp = int(time.mktime(datetime.timetuple()))
-    end_timestamp = start_timestamp + SECONDS_IN_DAY     #86400 seconds/day
+    end_timestamp = int(time.mktime(datetime.timetuple()))
+    start_timestamp = end_timestamp - SECONDS_IN_DAY     #86400 seconds/day
     url = ("https://poloniex.com/public?command=returnChartData&currencyPair="
            "BTC_SJCX&start={}&end={}&period={}".format(start_timestamp,
                                                        end_timestamp,
