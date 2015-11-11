@@ -2,7 +2,7 @@
 SJCX Payments Calculator
 ========================
 
-|BuildLink|_ |CoverageLink|_ |LicenseLink|_ |IssuesLink|_
+|BuildLink|_ |CoverageLink|_ |LicenseLink|_ 
 
 
 .. |BuildLink| image:: https://travis-ci.org/Storj/sjcx-payments.svg?branch=master
