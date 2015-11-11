@@ -2,6 +2,21 @@
 SJCX Payments Calculator
 ========================
 
+|BuildLink|_ |CoverageLink|_ |LicenseLink|_ |IssuesLink|_
+
+
+.. |BuildLink| image:: https://travis-ci.org/Storj/sjcx-payments.svg?branch=master
+.. _BuildLink: https://travis-ci.org/Storj/sjcx-payments
+
+.. |CoverageLink| image:: https://coveralls.io/repos/Storj/sjcx-payments/badge.svg
+.. _CoverageLink: https://coveralls.io/r/Storj/sjcx-payments
+
+.. |LicenseLink| image:: https://img.shields.io/badge/license-MIT-blue.svg
+.. _LicenseLink: https://raw.githubusercontent.com/Storj/sjcx-payments
+
+.. |IssuesLink| image:: https://img.shields.io/github/issues/Storj/sjcx-payments.svg
+.. _IssuesLink: https://github.com/Storj/sjcx-payments
+
 sjcx-payments is used for calculating the sjcx rewards for the farmers on the Storj network. sjcx-payments uses farmer data stored in a MongoDB (data is collected by scrapers). Scrapers are in the driveshare-graph repository.  
 
 
