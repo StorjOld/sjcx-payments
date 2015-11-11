@@ -5,6 +5,7 @@ python:
 # install dependencies
 install:
   - pip3 install -r requirements.txt
+  - pip3 install -r test_requirements.txt
 
 script:
   - coverage run --source="sjcx-payments" -m unittest tests
