@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.5"
+
+# install dependencies
+install:
+  - pip3 install -r requirements.txt
+
+script:
+  - coverage run --source="sjcx-payments" test 
+
+after_success:
+  - coveralls
