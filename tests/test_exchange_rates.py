@@ -1,6 +1,6 @@
 import unittest
 import datetime as dt
-import sjcx-payments.scripts.exchange_rates as exchange_rate
+import scripts.exchange_rates as exchange_rate
 from datetime import timedelta
 
 class ExchangeRates(unittest.TestCase):
