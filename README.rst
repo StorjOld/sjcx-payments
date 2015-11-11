@@ -8,8 +8,8 @@ SJCX Payments Calculator
 .. |BuildLink| image:: https://travis-ci.org/Storj/sjcx-payments.svg?branch=master
 .. _BuildLink: https://travis-ci.org/Storj/sjcx-payments
 
-.. |CoverageLink| image:: https://coveralls.io/repos/Storj/sjcx-payments/badge.svg
-.. _CoverageLink: https://coveralls.io/r/Storj/sjcx-payments
+.. |CoverageLink| image:: https://coveralls.io/repos/Storj/sjcx-payments/badge.svg?branch=master&service=github
+.. _CoverageLink: https://coveralls.io/github/Storj/sjcx-payments?branch=master
 
 .. |LicenseLink| image:: https://img.shields.io/badge/license-MIT-blue.svg
 .. _LicenseLink: https://raw.githubusercontent.com/Storj/sjcx-payments
