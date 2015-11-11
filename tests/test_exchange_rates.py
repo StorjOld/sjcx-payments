@@ -16,4 +16,5 @@ class ExchangeRates(unittest.TestCase):
         btc_usd = exchange_rate.btc_usd_rate(prev_date)
         self.assertTrue(isinstance(btc_usd, float))
 
-
+if __name__ == "__main__":
+    unittest.main()

@@ -1,1 +1,2 @@
-__author__ = 'akim'
+if __name__ == "__main__":
+    unittest.main()
