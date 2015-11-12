@@ -305,7 +305,7 @@ def update_total_rewards(conn, cursor, last_date):
         cursor.execute('''SELECT MAX(total_usd_reward) FROM rewards WHERE
                           auth_address = ?''', (str(address),))
         total_past_rewards = cursor.fetchone()[0]
-        cursor.execute('''UPDATE rewards SET total_usd_rewards = ? + usd_reward
+        cursor.execute('''UPDATE rewards SET total_usd_reward = ? + usd_reward
                           WHERE auth_address = ? and payment_date = ?''',
                        (total_past_rewards, str(address), str(last_date),))
     conn.commit()
