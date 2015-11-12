@@ -23,19 +23,6 @@ SJCX_BALANCE_API = "http://xcp.blockscan.com/api2?module=asset&action=holders&na
 WHITELIST = 'https://raw.githubusercontent.com/Storj/whitelist/master/storj_crowdfunding_by_amount.txt'
 
 
-def gb_from_height(height):
-    """Returns the size in gigabytes of the height.
-
-    Args:
-        height: farmer's capacity (number of 128MB shards it can store)
-
-    Returns:
-        gb: gigabytes
-    """
-    gb = float(height*128*1048576/1000000000)
-    return gb
-
-
 def distinct_farmers(collection, first_date, last_date):
     """Returns list of distinct authentication addresses seen between
     first_date and last_date.
