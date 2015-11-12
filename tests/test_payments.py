@@ -68,7 +68,7 @@ class Payments(unittest.TestCase):
         cursor = conn.cursor()
         test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
         payments.make_points_csv(cursor, test_date)
-        dir = os.path.dir('sjcx_rewards_2015_11_1.csv')
+        dir = os.path.dirname('sjcx_rewards_2015_11_1.csv')
         boolean = os.path.exists(dir)
         self.assertTrue(boolean)
         cursor.execute('''UPDATE rewards SET balance = 0, sjcx_reward = 0,

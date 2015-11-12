@@ -340,7 +340,7 @@ def init_past_rewards(conn, cursor):
         conn: sqlite3 connection
         cursor: conn's cursor
     """
-    dir = os.path.dir(PAST_REWARDS_CSV)
+    dir = os.path.dirname(PAST_REWARDS_CSV)
     xl_workbook = xlrd.open_workbook(dir)
     xl_sheet = xl_workbook.sheet_by_name("Totals")
     for row_idx in range(1, xl_sheet.nrows):
