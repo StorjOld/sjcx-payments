@@ -52,7 +52,7 @@ class Payments(unittest.TestCase):
 
     def test_create_whitelist(self):
         whitelist = payments.create_whitelist()
-        self.assert(len(whitelist) > 0)
+        self.assertTrue(len(whitelist) > 0)
 
     def test_uptime_logistic_function(self):
         uptime = 0.5
