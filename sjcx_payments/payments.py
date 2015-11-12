@@ -298,7 +298,7 @@ def update_total_rewards(conn, cursor, last_date):
         cursor: conn's cursor
         last_date: payment date for which to update total rewards
     """
-    cursor.execute('SELECT address FROM rewards WHERE payment_date = ?', (str(last_date),))
+    cursor.execute('SELECT auth_address FROM rewards WHERE payment_date = ?', (str(last_date),))
     address_list = cursor.fetchall()
     for address in address_list:
         address = ''.join(address)
@@ -306,7 +306,7 @@ def update_total_rewards(conn, cursor, last_date):
                           address = ?''', (str(address),))
         total_past_rewards = cursor.fetchone()[0]
         cursor.execute('''UPDATE rewards SET total_usd_rewards = ? + usd_reward
-                          WHERE address = ? and payment_date = ?''',
+                          WHERE auth_address = ? and payment_date = ?''',
                        (total_past_rewards, str(address), str(last_date),))
     conn.commit()
 
@@ -340,7 +340,7 @@ def init_past_rewards(conn, cursor):
         conn: sqlite3 connection
         cursor: conn's cursor
     """
-    dir = os.path.dirname(PAST_REWARDS_CSV)
+    dir = os.path.abspath(PAST_REWARDS_CSV)
     xl_workbook = xlrd.open_workbook(dir)
     xl_sheet = xl_workbook.sheet_by_name("Totals")
     for row_idx in range(1, xl_sheet.nrows):
