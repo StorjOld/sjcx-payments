@@ -6,25 +6,27 @@ import sjcx_payments.payments as payments
 
 class Payments(unittest.TestCase):
 
-    def setupClass(self):
-        self.conn = sqlite3.connect('../data/test_rewards.db')
-        self.cursor = self.conn.cursor()
-
     def test_add_balances(self):
+        conn = sqlite3.connect('data/test_rewards.db')
+        cursor = conn.cursor()
         test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
-        payments.add_balances(self.conn, self.cursor, test_date)
-        self.cursor.execute('''SELECT MAX(balance) FROM rewards WHERE payment_date=?''',
+        payments.add_balances(conn, cursor, test_date)
+        cursor.execute('''SELECT MAX(balance) FROM rewards WHERE payment_date=?''',
                        (str(test_date),))
-        max_balance = self.cursor.fetchone()[0]
+        max_balance =cursor.fetchone()[0]
         self.assertTrue(max_balance > 0)
+        conn.close()
 
     def test_assign_points(self):
+        conn = sqlite3.connect('data/test_rewards.db')
+        cursor = conn.cursor()
         test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
-        payments.assign_points(self.conn, self.cursor, test_date)
-        self.cursor.execute('''SELECT MAX(points) FROM rewards WHERE payment_date=?''',
+        payments.assign_points(conn, cursor, test_date)
+        cursor.execute('''SELECT MAX(points) FROM rewards WHERE payment_date=?''',
                        (str(test_date),))
-        points = self.cursor.fetchone()[0]
+        points = cursor.fetchone()[0]
         self.assertTrue(points > 0)
+        conn.close()
 
     def test_uptime_logistic_function(self):
         uptime = 0.5
@@ -35,13 +37,6 @@ class Payments(unittest.TestCase):
         height = 0.5
         value = payments.height_function(height)
         self.assertTrue(isinstance(value, float))
-
-    def tearDownClass(self):
-        self.cursor.execute('''UPDATE rewards SET balance = 0, points = 0,
-                               sjcx_reward = 0, usd_reward = 0,
-                               total_usd_reward = 0''')
-        self.conn.commit()
-        self.conn.close()
 
 if __name__ == '__main__':
     unittest.main()
