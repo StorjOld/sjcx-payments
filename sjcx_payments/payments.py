@@ -303,7 +303,7 @@ def update_total_rewards(conn, cursor, last_date):
     for address in address_list:
         address = ''.join(address)
         cursor.execute('''SELECT MAX(total_usd_reward) FROM rewards WHERE
-                          address = ?''', (str(address),))
+                          auth_address = ?''', (str(address),))
         total_past_rewards = cursor.fetchone()[0]
         cursor.execute('''UPDATE rewards SET total_usd_rewards = ? + usd_reward
                           WHERE auth_address = ? and payment_date = ?''',
