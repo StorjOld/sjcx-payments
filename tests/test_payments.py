@@ -29,6 +29,14 @@ class Payments(unittest.TestCase):
         self.assertTrue(points > 0)
         conn.close()
 
+    def test_create_table(self):
+        conn = sqlite3.connect('unittest.db')
+        cursor = conn.cursor()
+        payments.create_table(conn, cursor)
+        dir = os.path.abspath('unittest.db')
+        boolean = os.path.exists(dir)
+        self.assertTrue(boolean)
+
     def test_distribute_sjcx(self):
         conn = sqlite3.connect('data/test_rewards.db')
         cursor = conn.cursor()
