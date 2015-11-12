@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
+import os
 from setuptools import setup
 
 setup(
@@ -8,8 +6,9 @@ setup(
     description = 'sjcx rewards calculator',
     author = 'Andrew Kim',
     url='http://storj.io',
-    install_requires=['xlrd', 'requests', 'pymongo'],
-    tests_require=['coverage', 'coveralls'],
+    dependency_links=[],
+    install_requires=open("requirements.txt").readlines(),
+    tests_require=open("test_requirements.txt").readlines(),
     test_suite='tests',
 )
 
