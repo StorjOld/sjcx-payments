@@ -9,6 +9,6 @@ setup(
     dependency_links=[],
     install_requires=open("requirements.txt").readlines(),
     tests_require=open("test_requirements.txt").readlines(),
-    test_suite='tests',
+    test_suite='tests'
 )
 
