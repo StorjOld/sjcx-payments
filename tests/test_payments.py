@@ -6,6 +6,10 @@ import sjcx_payments.payments as payments
 
 class Payments(unittest.TestCase):
 
+    def __init__(self):
+        self.conn = sqlite3.connect('data/test_rewars.db')
+        self.cursor = self.conn.cursor()
+
     def setupClass(self):
         self.conn = sqlite3.connect('data/test_rewards.db')
         self.cursor = self.conn.cursor()
