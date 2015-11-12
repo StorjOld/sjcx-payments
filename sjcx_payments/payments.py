@@ -323,7 +323,7 @@ def make_points_csv(cursor, date):
                       usd_reward, duration / (86400),
                       uptime / duration * 100, height FROM rewards
                       WHERE duration > 0 AND payment_date=?''', (str(date),))
-    csv_file = '../sjcx_rewards_{}_{}_{}.csv'.format(date.year, date.month, date.day)
+    csv_file = 'sjcx_rewards_{}_{}_{}.csv'.format(date.year, date.month, date.day)
     with open(csv_file, 'w') as fp:
         csv_writer = csv.writer(fp)
         csv_writer.writerow(['auth_address', 'payout_address', 'sjcx_reward',
@@ -361,9 +361,9 @@ if __name__ == "__main__":
     collection = connection['GroupB']['farmers']
 
     first_date = input('Enter the first date for the payment duration period'
-                        'in YYYY-MM-DD format.')
+                        'in YYYY-MM-DD format: ')
     last_date = input('Enter the last date for the payment duration period'
-                      ' in YYYY-MM-DD format.')
+                      ' in YYYY-MM-DD format: ')
     first_year, first_month, first_day = map(int, first_date.split('-'))
     last_year, last_month, last_day = map(int, last_date.split('-'))
     first_date = dt.datetime(first_year, first_month, first_day, 0, 0, 0)
@@ -373,8 +373,8 @@ if __name__ == "__main__":
     add_reward_stats(conn, cursor, collection, first_date, last_date)
     assign_points(conn, cursor, last_date)
     distribute_sjcx(conn, cursor, last_date)
-    update_total_rewards(conn, cursor)
+    update_total_rewards(conn, cursor, last_date)
 
-    make_points_csv(cursor)
+    make_points_csv(cursor, last_date)
     conn.close()
     print('\nOpen sjcx_rewards.csv to see rewards')
