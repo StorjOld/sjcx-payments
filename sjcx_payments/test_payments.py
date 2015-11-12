@@ -30,5 +30,5 @@ class Payments(unittest.TestCase):
         height = 0.5
         value = payments.height_function(height)
         self.assertTrue(isinstance(value, float))
-        
+
 
