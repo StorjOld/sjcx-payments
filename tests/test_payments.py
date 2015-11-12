@@ -10,13 +10,6 @@ class Payments(unittest.TestCase):
         self.conn = sqlite3.connect('data/test_rewards.db')
         self.cursor = self.conn.cursor()
 
-    def tearDown(self):
-        self.cursor.execute('''UPDATE rewards SET balance = 0, points = 0,
-                               sjcx_reward = 0, usd_reward = 0,
-                               total_usd_reward = 0''')
-        self.conn.commit()
-        self.conn.close()
-
     def test_add_balances(self):
         test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
         payments.add_balances(self.conn, self.cursor, test_date)
@@ -42,6 +35,13 @@ class Payments(unittest.TestCase):
         height = 0.5
         value = payments.height_function(height)
         self.assertTrue(isinstance(value, float))
+
+    def tearDown(self):
+        self.cursor.execute('''UPDATE rewards SET balance = 0, points = 0,
+                               sjcx_reward = 0, usd_reward = 0,
+                               total_usd_reward = 0''')
+        self.conn.commit()
+        self.conn.close()
 
 if __name__ == '__main__':
     unittest.main()
