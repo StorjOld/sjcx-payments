@@ -3,12 +3,15 @@ import time
 import csv
 import xlrd
 from math import exp
-import sjcx_payments.exchange_rates as exchange_rates
 import requests
 import re
 import datetime as dt
 from pymongo import MongoClient
 import sqlite3
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import sjcx_payments.exchange_rates as exchange_rates
 
 
 SJCX_TOTAL_REWARDS = 100000
