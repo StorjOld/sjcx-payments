@@ -3,7 +3,7 @@ import time
 import csv
 import xlrd
 from math import exp
-import exchange_rates
+import sjcx_payments.exchange_rates as exchange_rates
 import requests
 import re
 import datetime as dt
