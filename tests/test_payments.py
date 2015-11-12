@@ -6,7 +6,7 @@ import sjcx_payments.payments as payments
 
 class Payments(unittest.TestCase):
 
-    def setup(self):
+    def setupClass(self):
         self.conn = sqlite3.connect('data/test_rewards.db')
         self.cursor = self.conn.cursor()
 
@@ -36,7 +36,7 @@ class Payments(unittest.TestCase):
         value = payments.height_function(height)
         self.assertTrue(isinstance(value, float))
 
-    def tearDown(self):
+    def tearDownClass(self):
         self.cursor.execute('''UPDATE rewards SET balance = 0, points = 0,
                                sjcx_reward = 0, usd_reward = 0,
                                total_usd_reward = 0''')
