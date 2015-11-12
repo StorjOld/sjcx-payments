@@ -4,8 +4,8 @@ python:
 
 # install dependencies
 install:
-  - pip3 install -r requirements.txt
-  - pip3 install -r test_requirements.txt
+  - pip install -r requirements.txt
+  - pip install -r test_requirements.txt
 
 script:
   - coverage run --source="sjcx_payments" setup.py test
