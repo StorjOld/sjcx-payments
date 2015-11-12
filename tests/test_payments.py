@@ -45,7 +45,7 @@ class Payments(unittest.TestCase):
         cursor = conn.cursor()
         test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
         payments.update_total_rewards(conn, cursor, test_date)
-        cursor.execute('''SELECT MAX(total_usd_rewards) FROM rewards WHERE
+        cursor.execute('''SELECT MAX(total_usd_reward) FROM rewards WHERE
                           payment_date = ?''', (str(test_date),))
         usd_reward = cursor.fetchone()[0]
         self.assertTrue(usd_reward > 0)
@@ -55,7 +55,7 @@ class Payments(unittest.TestCase):
         cursor = conn.cursor()
         test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
         payments.make_points_csv(cursor, test_date)
-        dir = os.path.dirname('sjcx_rewards_2015_11_1.csv')
+        dir = os.path.abspath('sjcx_rewards_2015_11_1.csv')
         boolean = os.path.exists(dir)
         self.assertTrue(boolean)
         cursor.execute('''UPDATE rewards SET balance = 0, sjcx_reward = 0,
