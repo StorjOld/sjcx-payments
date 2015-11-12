@@ -38,19 +38,19 @@ class Payments(unittest.TestCase):
         total = cursor.fetchone()[0]
         self.assertAlmostEqual(total, 100000)
         conn.close()
-
-    def test_init_past_rewards(self):
-        conn = sqlite3.connect('data/test_rewards.db')
-        cursor = conn.cursor()
-        payments.init_past_rewards(conn, cursor)
-        test_address = '19cBuNFYFdM9C8RB6bfnhM78RKaHHDVHFm'
-        test_total = 192.42
-        cursor.execute('''SELECT payout_address WHERE payout_address = ? AND
-                       total_usd_reward = ?''', (str(test_address), test_total))
-        data = cursor.fetchall()
-        cursor.execute('''UPDATE rewards SET balance = 0, sjcx_reward = 0,
-                          points = 0, usd_reward = 0, total_usd_reward = 0''')
-        self.assertFalse(len(data == 0))
+    #
+    # def test_init_past_rewards(self):
+    #     conn = sqlite3.connect('data/test_rewards.db')
+    #     cursor = conn.cursor()
+    #     payments.init_past_rewards(conn, cursor)
+    #     test_address = '19cBuNFYFdM9C8RB6bfnhM78RKaHHDVHFm'
+    #     test_total = 192.42
+    #     cursor.execute('''SELECT payout_address WHERE payout_address = ? AND
+    #                    total_usd_reward = ?''', (str(test_address), test_total))
+    #     data = cursor.fetchall()
+    #     cursor.execute('''UPDATE rewards SET balance = 0, sjcx_reward = 0,
+    #                       points = 0, usd_reward = 0, total_usd_reward = 0''')
+    #     self.assertFalse(len(data == 0))
 
     def test_create_whitelist(self):
         whitelist = payments.create_whitelist()

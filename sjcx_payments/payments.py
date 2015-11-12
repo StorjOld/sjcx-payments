@@ -15,7 +15,7 @@ import sjcx_payments.exchange_rates as exchange_rates
 
 
 SJCX_TOTAL_REWARDS = 100000
-PAST_REWARDS_CSV = "Storj Test Group B Rewards Compliance.xlsx"
+PAST_REWARDS_CSV = "../data/Storj Test Group B Rewards Compliance.xlsx"
 SECONDS_IN_TWO_WEEKS = 1209600
 SECONDS_IN_MONTH = 2678400
 INDIVIDUAL_MAX_HEIGHT = 199999
