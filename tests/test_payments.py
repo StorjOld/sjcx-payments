@@ -36,7 +36,7 @@ class Payments(unittest.TestCase):
         cursor.execute('''SELECT SUM(sjcx_reward) FROM rewards WHERE
                           payment_date = ?''', (str(test_date),))
         total = cursor.fetchone()[0]
-        self.assertEqual(total, 100000)
+        self.assertAlmostEqual(total, 100000)
         conn.close()
 
     def test_init_past_rewards(self):
