@@ -48,14 +48,6 @@ class Payments(unittest.TestCase):
         self.assertAlmostEqual(total, 100000)
         conn.close()
 
-    def test_init_past_rewards(self):
-        conn = sqlite3.connect('data/test_rewards.db')
-        cursor = conn.cursor()
-        payments.init_past_rewards(conn, cursor)
-        cursor.execute('SELECT MAX(total_usd_reward) FROM rewards')
-        max = cursor.fetchone()[0]
-        self.assertTrue(max > 150)
-
     def test_update_total_rewards(self):
         conn = sqlite3.connect('data/test_rewards.db')
         cursor = conn.cursor()
