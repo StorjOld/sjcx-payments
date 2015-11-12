@@ -8,7 +8,7 @@ class Payments(unittest.TestCase):
 
     def test_assign_points(self):
         test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
-        conn = sqlite3.connect('../data/test_rewrs.db')
+        conn = sqlite3.connect('../data/test_rewards.db')
         cursor = conn.cursor()
         payments.assign_points(conn, cursor, test_date)
         cursor.execute('''SELECT MAX(points) FROM rewards WHERE payment_date=?''',
