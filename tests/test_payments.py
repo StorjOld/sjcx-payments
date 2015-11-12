@@ -2,6 +2,7 @@ import unittest
 import datetime as dt
 import sqlite3
 import sjcx_payments.payments as payments
+import os
 
 
 class Payments(unittest.TestCase):
@@ -38,19 +39,41 @@ class Payments(unittest.TestCase):
         total = cursor.fetchone()[0]
         self.assertAlmostEqual(total, 100000)
         conn.close()
-    #
-    # def test_init_past_rewards(self):
-    #     conn = sqlite3.connect('data/test_rewards.db')
-    #     cursor = conn.cursor()
-    #     payments.init_past_rewards(conn, cursor)
-    #     test_address = '19cBuNFYFdM9C8RB6bfnhM78RKaHHDVHFm'
-    #     test_total = 192.42
-    #     cursor.execute('''SELECT payout_address WHERE payout_address = ? AND
-    #                    total_usd_reward = ?''', (str(test_address), test_total))
-    #     data = cursor.fetchall()
-    #     cursor.execute('''UPDATE rewards SET balance = 0, sjcx_reward = 0,
-    #                       points = 0, usd_reward = 0, total_usd_reward = 0''')
-    #     self.assertFalse(len(data == 0))
+
+    def test_init_past_rewards(self):
+        conn = sqlite3.connect('data/test_rewards.db')
+        cursor = conn.cursor()
+        payments.init_past_rewards(conn, cursor)
+        test_address = '19cBuNFYFdM9C8RB6bfnhM78RKaHHDVHFm'
+        test_total = 192.42
+        cursor.execute('''SELECT payout_address WHERE payout_address = ? AND
+                       total_usd_reward = ?''', (str(test_address), test_total))
+        data = cursor.fetchall()
+        cursor.execute('''UPDATE rewards SET balance = 0, sjcx_reward = 0,
+                          points = 0, usd_reward = 0, total_usd_reward = 0''')
+        self.assertFalse(len(data == 0))
+
+    def test_update_total_rewards(self):
+        conn = sqlite3.connect('data/test_rewards.db')
+        cursor = conn.cursor()
+        test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
+        payments.update_total_rewards(conn, cursor, test_date)
+        cursor.execute('''SELECT MAX(total_usd_rewards) FROM rewards WHERE
+                          payment_date = ?''', (str(test_date),))
+        usd_reward = cursor.fetchone()[0]
+        self.assertTrue(usd_reward > 0)
+
+    def test_make_csv(self):
+        conn = sqlite3.connect('data/test_rewards.db')
+        cursor = conn.cursor()
+        test_date = dt.datetime(2015, 11, 1, 0, 0, 0)
+        payments.make_points_csv(cursor, test_date)
+        dir = os.path.dir('sjcx_rewards_2015_11_1.csv')
+        boolean = os.path.exists(dir)
+        self.assertTrue(boolean)
+        cursor.execute('''UPDATE rewards SET balance = 0, sjcx_reward = 0,
+                          points = 0, usd_reward = 0, total_usd_reward = 0''')
+        conn.commit()
 
     def test_create_whitelist(self):
         whitelist = payments.create_whitelist()
