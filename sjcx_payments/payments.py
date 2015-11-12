@@ -341,7 +341,7 @@ def init_past_rewards(conn, cursor):
     conn.commit()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     conn = sqlite3.connect('../data/rewards.db')
     cursor = conn.cursor()
     connection = MongoClient('localhost', 27017)
