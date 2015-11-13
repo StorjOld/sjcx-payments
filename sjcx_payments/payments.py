@@ -348,7 +348,7 @@ if __name__ == "__main__":
 
     first_date = input('Enter the first date for the payment duration period'
                         'in YYYY-MM-DD format: ')
-    last_date = input('Enter the last date for the payment duration period'
+    last_date = input('Enter the day after the last date for the payment duration period'
                       ' in YYYY-MM-DD format: ')
     first_year, first_month, first_day = map(int, first_date.split('-'))
     last_year, last_month, last_day = map(int, last_date.split('-'))
