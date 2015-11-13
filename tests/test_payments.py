@@ -33,7 +33,7 @@ class Payments(unittest.TestCase):
         test_d1 = dt.datetime(2015, 11, 11, 0, 0, 0)
         test_d2 = dt.datetime(2015, 11, 13, 0, 0, 0)
         payments.add_reward_stats(conn, cursor, collection, test_d1, test_d2)
-        test_addr = '1PxAH3dstbxW2WLSGahnLfC5w5JfEmBEad'
+        test_addr = '196VsscmG5Azfgm4zJtuoGd8RZwwfRm1Am'
         cursor.execute('SELECT * FROM rewards WHERE auth_address = ? AND payment_date = ?',
                        (str(test_addr), str(test_d2),))
         data = cursor.fetchall()
