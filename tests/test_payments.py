@@ -15,6 +15,7 @@ class Payments(unittest.TestCase):
         test_d2 = dt.datetime(2015, 11, 13, 0, 0, 0)
         farmers = payments.distinct_farmers(collection, test_d1, test_d2)
         self.assertTrue(len(farmers) > 0)
+        self.assertTrue("19CTLyzQpUe53X8nWoKHx2kLhmj9shfTty" in farmers)
 
     def test_average_height(self):
         client = MongoClient('localhost', 27017)
