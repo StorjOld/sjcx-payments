@@ -39,6 +39,18 @@ class Payments(unittest.TestCase):
         data = cursor.fetchall()
         self.assertTrue(len(data) > 0)
 
+    def test_add_payout_address(self):
+        client = MongoClient('localhost', 27017)
+        collection = client['GroupB']['farmers']
+        conn = sqlite3.connect('data/test_rewards.db')
+        cursor = conn.cursor()
+        payments.add_payout_address(conn, cursor, collection)
+        test_btc_addr = '1KNgGurgWUgzHM5wDJLegH1VB4xLDCrbxJ'
+        cursor.execute('SELECT payout_address FROM rewards WHERE auth_address = ?',
+                       (str(test_btc_addr),))
+        data = cursor.fetchall()
+        self.assertTrue(len(data) > 0)
+
     def test_add_balances(self):
         conn = sqlite3.connect('data/test_rewards.db')
         cursor = conn.cursor()
