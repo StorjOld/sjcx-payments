@@ -152,9 +152,9 @@ def add_payout_address(conn, cursor, collection):
         ]
         for doc in collection.aggregate(pipeline):
             payout_address = doc['farmers']['payout_addr']
-            break
-        cursor.execute('UPDATE rewards SET payout_address = ? WHERE auth_address = ?',
+            cursor.execute('UPDATE rewards SET payout_address = ? WHERE auth_address = ?',
                        (str(payout_address), str(auth_address),))
+            break
     conn.commit()
 
 
