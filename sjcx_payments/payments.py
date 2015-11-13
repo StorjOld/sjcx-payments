@@ -37,7 +37,7 @@ def distinct_farmers(collection, first_date, last_date):
                  recorded in the collection between first_date and last_date
     """
     farmers = collection.find({'time': {'$gte': first_date, '$lte': last_date}}
-                              ).distinct('btc_addr')
+                              ).distinct('farmers.btc_addr')
     return farmers
 
 
