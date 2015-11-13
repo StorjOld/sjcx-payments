@@ -15,7 +15,7 @@ import sjcx_payments.exchange_rates as exchange_rates
 
 
 SJCX_TOTAL_REWARDS = 100000
-PAST_REWARDS_CSV = "Storj Test Group B Rewards Compliance.xlsx"
+PAST_REWARDS_CSV = "../data/Storj Test Group B Rewards Compliance.xlsx"
 SECONDS_IN_TWO_WEEKS = 1209600
 SECONDS_IN_MONTH = 2678400
 INDIVIDUAL_MAX_HEIGHT = 199999
@@ -327,8 +327,7 @@ def init_past_rewards(conn, cursor):
         conn: sqlite3 connection
         cursor: conn's cursor
     """
-    dir = os.path.abspath(PAST_REWARDS_CSV)
-    xl_workbook = xlrd.open_workbook(dir)
+    xl_workbook = xlrd.open_workbook(PAST_REWARDS_CSV)
     xl_sheet = xl_workbook.sheet_by_name("Totals")
     for row_idx in range(1, xl_sheet.nrows):
         address = str(xl_sheet.cell(row_idx, 0).value)
