@@ -1,11 +1,43 @@
 import unittest
 import datetime as dt
 import sqlite3
+from pymongo import MongoClient
 import sjcx_payments.payments as payments
 import os
 
 
 class Payments(unittest.TestCase):
+
+    def test_distinct_farmers(self):
+        client = MongoClient('localhost', 27017)
+        collection = client['GroupB']['farmers']
+        test_d1 = dt.datetime(2015, 11, 11, 0, 0, 0)
+        test_d2 = dt.datetime(2015, 11, 13, 0, 0, 0)
+        farmers = payments.distinct_farmers(collection, test_d1, test_d2)
+        self.assertTrue(len(farmers) > 0)
+
+    def test_average_height(self):
+        client = MongoClient('localhost', 27017)
+        collection = client['GroupB']['farmers']
+        test_d1 = dt.datetime(2015, 11, 11, 0, 0, 0)
+        test_d2 = dt.datetime(2015, 11, 13, 0, 0, 0)
+        test_btc_addr = '1BXSL6MALun5dY1pSoXomRRiD8s5VQxQtT'
+        height = payments.average_height(test_btc_addr, test_d1, test_d2, collection)
+        self.assertTrue(height > 0)
+
+    def test_add_reward_stats(self):
+        client = MongoClient('localhost', 27017)
+        collection = client['GroupB']['farmers']
+        conn = sqlite3.connect('data/test_rewards.db')
+        cursor = conn.cursor()
+        test_d1 = dt.datetime(2015, 11, 11, 0, 0, 0)
+        test_d2 = dt.datetime(2015, 11, 13, 0, 0, 0)
+        payments.add_reward_stats(conn, cursor, collection, test_d1, test_d2)
+        test_addr = '1PxAH3dstbxW2WLSGahnLfC5w5JfEmBEad'
+        cursor.execute('SELECT * WHERE auth_address = ? AND payment_date = ?',
+                       (str(test_addr), str(test_d2),))
+        data = cursor.fetchall()
+        self.assertTrue(len(data) > 0)
 
     def test_add_balances(self):
         conn = sqlite3.connect('data/test_rewards.db')
