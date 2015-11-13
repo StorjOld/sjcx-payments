@@ -11,7 +11,7 @@ services:
   - mongodb
 
 before_script:
-  - mongorestore -d GroupB dump
+  - mongorestore --port 27017 --db GroupB dump/GroupB
 
 script:
   - coverage run --source="sjcx_payments" setup.py test
