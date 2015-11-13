@@ -33,7 +33,7 @@ class Payments(unittest.TestCase):
         test_d1 = dt.datetime(2015, 11, 11, 0, 0, 0)
         test_d2 = dt.datetime(2015, 11, 13, 0, 0, 0)
         payments.add_reward_stats(conn, cursor, collection, test_d1, test_d2)
-        test_addr = '196VsscmG5Azfgm4zJtuoGd8RZwwfRm1Am'
+        test_addr = '196VsscmG5Azfgm4zJtuoGd8RZwwfRm1A'
         cursor.execute('SELECT * FROM rewards WHERE auth_address = ? AND payment_date = ?',
                        (str(test_addr), str(test_d2),))
         data = cursor.fetchall()
@@ -45,7 +45,7 @@ class Payments(unittest.TestCase):
         conn = sqlite3.connect('data/test_rewards.db')
         cursor = conn.cursor()
         payments.add_payout_address(conn, cursor, collection)
-        test_btc_addr = '1KNgGurgWUgzHM5wDJLegH1VB4xLDCrbxJ'
+        test_btc_addr = '1PxAH3dstbxW2WLSGahnLfC5w5JfEmBEad'
         cursor.execute('SELECT payout_address FROM rewards WHERE auth_address = ?',
                        (str(test_btc_addr),))
         data = cursor.fetchall()
