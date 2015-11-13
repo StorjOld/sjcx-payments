@@ -24,6 +24,8 @@ OSX
 ---
 Install required packages
 ::
+	$ git clone https://github.com/Storj/sjcx-payments.git
+	$ cd sjcx-payments
 	$ brew install python3 sqlite3
 	$ pip3 install -r requirements.txt
 
@@ -31,6 +33,8 @@ Ubuntu
 ------
 Install required packages
 ::
+	$ git clone https://github.com/Storj/sjcx-payments.git
+	$ cd sjcx-payments
 	$ sudo apt-get install python3 python3-pip sqlite3 libsqlite3-dev
 	$ pip3 install -r requirements.txt 
 
@@ -42,6 +46,7 @@ Run this script on a machine that stores the MongoDB data from the driveshare-gr
 
 Example usage
 ::
+	$ cd sjcx_payments
 	$ python3 payments.py 
 	  Enter the first date for the payment duration period in YYYY-MM-DD format. 2015-11-01
 	  Enter the last date for the payment duration period in YYYY-MM-DD format. 2015-11-15
