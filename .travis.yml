@@ -11,7 +11,7 @@ services:
   - mongodb
 
 before_script:
-  - mongorestore farmer_dump
+  - mongorestore -d GroupB farmer_dump
 
 script:
   - coverage run --source="sjcx_payments" setup.py test
