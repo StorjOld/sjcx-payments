@@ -75,6 +75,26 @@ Changing the formula
 --------------------
 All components of the formula are in payments.py. If the total rewards pool, payment period, or max height changes,change the value of the global variables, SJCX_TOTAL_REWARDS and INDIVIDUAL_MAX_HEIGHT. Current code assumes a 2 week payment period. 
 
+Summaries
+=========
+farmersummary.py contains the functions needed to create and update a sqlite summaries table. It uses the MongoDB farmers collection to produce daily summaries (uptime, height, duration, points, percentage of total points for each build--authentication adddress). 
+
+Example usage in ipython3
+::
+	import farmersummary
+	import sqlite3
+	from pymongo import MongoClient
+	conn = sqlite3.connect('summary.db')
+	cursor = conn.cursor()
+	client = MongoClient('localhost', 27017)
+	collection = client['GroupB']['farmers']
+	
+	# To create and initialize table
+	farmersummary.create_summary_table(conn, cursor)
+	farmersummary.init_table(conn, cursor, collection)
+	
+	# To update payments 
+	farmersummary.update_table(conn, cursor, collection)
 
 Data
 ==== 
