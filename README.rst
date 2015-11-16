@@ -84,6 +84,7 @@ Example usage in ipython3
 	import farmersummary
 	import sqlite3
 	from pymongo import MongoClient
+	
 	conn = sqlite3.connect('summary.db')
 	cursor = conn.cursor()
 	client = MongoClient('localhost', 27017)
