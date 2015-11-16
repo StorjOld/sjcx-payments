@@ -97,6 +97,8 @@ Example usage in ipython3
 	# To update payments 
 	farmersummary.update_table(conn, cursor, collection)
 
+To search for specific farmer summaries, simply query the summary.db. You can also use an application like SQLiteBrowser to look through the database contents. 
+
 Data
 ==== 
 
