@@ -43,7 +43,7 @@ def init_table(conn, cursor, collection):
         assign_percentages(conn, cursor, single_date)
 
 
-def update_table(conn, cursor, collection):
+def update_table(conn, cursor, collection): # pragma: no cover
     """Updates the summaries table if there is new data in collection."""
     cursor.execute('SELECT MAX(date) FROM summaries')
     date = cursor.fetchone()[0]
