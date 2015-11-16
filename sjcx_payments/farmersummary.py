@@ -15,7 +15,7 @@ import sjcx_payments.payments as payments
 SECONDS_IN_DAY = 86400
 
 
-def create_summary_table(conn, cursor):
+def create_summary_table(conn, cursor): # pragma: no cover
     """Create the summaries table."""
     cursor.execute('''CREATE TABLE summaries
                       (payout_address CHAR(34)     NOT NULL,
@@ -93,7 +93,7 @@ def create_daily_summary(conn, cursor, collection, date):
         payout_address = payout_addresses[key]
         uptime = uptimes[key]
         duration = last_dates[key] - first_dates[key]
-        height = average_height(auth_address, date, collection)
+        height = payments.average_height(auth_address, date, next_date, collection)
         cursor.execute('''INSERT INTO summaries (auth_address, date,
                           payout_address, uptime, duration, height)
                           VALUES (?, ?, ?, ?, ? ,?)''',
@@ -138,7 +138,7 @@ def assign_percentages(conn, cursor, date):
     data = cursor.fetchone()
     total_points = data[0]
     cursor.execute('UPDATE summaries SET percentage = (points / ?) WHERE date=?',
-                   (total_points, (str(date),)))
+                   (total_points, str(date),))
     conn.commit()
 
 
@@ -164,5 +164,4 @@ def end_date(farmers_collection): # pragma: no cover
     day = end_date.day
     last_date = dt.datetime(year, month, day, 0, 0, 0, 0)
     return last_date
-
 
