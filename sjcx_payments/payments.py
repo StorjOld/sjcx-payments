@@ -357,10 +357,12 @@ if __name__ == "__main__":
 
     print('\nCalculating rewards...')
     add_reward_stats(conn, cursor, collection, first_date, last_date)
+    add_payout_address(conn, cursor, collection)
+    add_balances(conn, cursor, last_date)
     assign_points(conn, cursor, last_date)
     distribute_sjcx(conn, cursor, last_date)
     update_total_rewards(conn, cursor, last_date)
-
+    
     make_points_csv(cursor, last_date)
     conn.close()
     print('\nOpen sjcx_rewards.csv to see rewards')
